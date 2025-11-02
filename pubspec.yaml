@@ -1,0 +1,99 @@
+name: motor_sport_easy
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+
+environment:
+  sdk: ^3.8.1
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  get: ^4.7.2
+  flutter_svg: ^2.2.0
+  intl: ^0.20.2
+  image_picker: ^1.1.2
+  firebase_messaging: ^16.0.0
+  http: ^1.5.0
+  pinput: ^5.0.2
+  firebase_core: ^4.2.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+  assets:
+    - assets/svg/
+    - assets/images/
+    - assets/icon/
+
+  fonts:
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/font/play_fair_display/PlayfairDisplay-Black.ttf
+          weight: 900
+        - asset: assets/font/play_fair_display/PlayfairDisplay-BlackItalic.ttf
+          weight: 900
+          style: italic
+        - asset: assets/font/play_fair_display/PlayfairDisplay-Bold.ttf
+          weight: 700
+        - asset: assets/font/play_fair_display/PlayfairDisplay-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/font/play_fair_display/PlayfairDisplay-ExtraBold.ttf
+          weight: 800
+        - asset: assets/font/play_fair_display/PlayfairDisplay-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/font/play_fair_display/PlayfairDisplay-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/font/play_fair_display/PlayfairDisplay-Medium.ttf
+          weight: 500
+        - asset: assets/font/play_fair_display/PlayfairDisplay-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/font/play_fair_display/PlayfairDisplay-Regular.ttf
+          weight: 400
+        - asset: assets/font/play_fair_display/PlayfairDisplay-SemiBold.ttf
+          weight: 600
+        - asset: assets/font/play_fair_display/PlayfairDisplay-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+
+    - family: Inter
+      fonts:
+        - asset: assets/font/inter/Inter_18pt-Bold.ttf
+          weight: 700
+        - asset: assets/font/inter/Inter_18pt-ExtraBold.ttf
+          weight: 800
+        - asset: assets/font/inter/Inter_18pt-ExtraLight.ttf
+          weight: 200
+        - asset: assets/font/inter/Inter_18pt-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/font/inter/Inter_18pt-Light.ttf
+          weight: 300
+        - asset: assets/font/inter/Inter_18pt-Medium.ttf
+          weight: 500
+        - asset: assets/font/inter/Inter_28pt-Regular.ttf
+          weight: 400
+        - asset: assets/font/inter/Inter_28pt-Thin.ttf
+          weight: 100

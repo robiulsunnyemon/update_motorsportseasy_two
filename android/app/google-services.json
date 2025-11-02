@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "470378363502",
+    "project_id": "motorsporteasy",
+    "storage_bucket": "motorsporteasy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470378363502:android:41310dc98b51b81ba3447f",
+        "android_client_info": {
+          "package_name": "com.motorsporteasy.motor_sport_easy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuZ6w1fYHpVFqV7oLiNoC44DXdFRr6EBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
