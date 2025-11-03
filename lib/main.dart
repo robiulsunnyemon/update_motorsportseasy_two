@@ -29,7 +29,6 @@ Future<void> main() async {
 
 Future<void> agreeAndEnableNotifications() async {
 
-
   NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(alert: true, badge: true, sound: true,);
 
   if (settings.authorizationStatus == AuthorizationStatus.authorized) {
