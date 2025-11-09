@@ -18,19 +18,20 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await agreeAndEnableNotifications();
   final String? token = await SharedPrefHelper.getToken();
+  final bool? termsAndRegulationStatus = await SharedPrefHelper.getIsTermsAccepted();
+
   runApp(
     MotorSportEasyApp(
-      initialRoute: (token==null?Routes.TERMS_AND_REGULATION:Routes.SUBSCRIPTION)
+      initialRoute: (token==null && termsAndRegulationStatus==false)?Routes.TERMS_AND_REGULATION:(token==null && termsAndRegulationStatus==true)?Routes.LOGIN:Routes.BOTTOM_NAVIGATION_BAR
     ),
   );
+
 }
 
 
 
 Future<void> agreeAndEnableNotifications() async {
-
   NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(alert: true, badge: true, sound: true,);
-
   if (settings.authorizationStatus == AuthorizationStatus.authorized) {
     await SharedPrefHelper.saveIsAcceptedNotification(true);
   } else {

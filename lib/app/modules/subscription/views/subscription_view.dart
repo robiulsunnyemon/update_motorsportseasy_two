@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:motor_sport_easy/app/data/constants/app_color.dart';
+import 'package:motor_sport_easy/app/routes/app_pages.dart';
 import '../controllers/subscription_controller.dart';
 
 class SubscriptionView extends GetView<SubscriptionController> {
@@ -191,13 +192,15 @@ class SubscriptionView extends GetView<SubscriptionController> {
                       onPressed: () {
                         if (controller.firstProduct != null) {
                           controller.purchaseProduct(controller.firstProduct!);
+
                         } else {
-                          Get.snackbar(
-                            'Error',
-                            'Product not available',
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
+                          // Get.snackbar(
+                          //   'Warning',
+                          //   'Product not available',
+                          //   backgroundColor: Colors.red,
+                          //   colorText: Colors.white,
+                          // );
+                          Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -230,6 +233,7 @@ class SubscriptionView extends GetView<SubscriptionController> {
                   // Terms and Conditions
                   Padding(
                     padding: EdgeInsets.all(16),
+
                     child: Text(
                       'By subscribing, you agree to our Terms of Service and Privacy Policy. '
                           'Payment will be charged to your account upon confirmation. '
