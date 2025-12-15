@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../data/model/event_api_model.dart';
-import '../contants.dart';
+import '../base_url.dart';
 
 
 class EventApiService {

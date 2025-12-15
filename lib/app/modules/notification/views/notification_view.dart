@@ -41,7 +41,7 @@ class NotificationView extends GetView<NotificationController> {
               String formatted = DateFormat('dd/MM/yyyy hh:mm a')
                   .format(notification.createdAt.toLocal());
               return Card(
-                color: Colors.white,
+                color: AppColor.white,
                 child: ListTile(
                   title: Text(notification.notificationTitle),
                   subtitle: Column(

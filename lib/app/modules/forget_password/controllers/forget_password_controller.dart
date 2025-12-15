@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motor_sport_easy/app/routes/app_pages.dart';
 
-import '../../../api_services/contants.dart';
+import '../../../api_services/base_url.dart';
 class ForgetPasswordController extends GetxController {
 
   final emailController = TextEditingController();
@@ -30,6 +30,7 @@ class ForgetPasswordController extends GetxController {
         },
       );
       isLoading.value=false;
+
       update();
       if(response.statusCode==200){
         Get.snackbar("Success", "You Successfully resend your otp. Please check your Email");

@@ -79,7 +79,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                               vertical: 4,
                             ),
                             decoration: ShapeDecoration(
-                              color: const Color(0xFFF3F4F6),
+                              color:AppColor.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
@@ -117,7 +117,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                               vertical: 4,
                             ),
                             decoration: ShapeDecoration(
-                              color: const Color(0xFFF3F4F6),
+                              color:AppColor.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
@@ -155,7 +155,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                               vertical: 4,
                             ),
                             decoration: ShapeDecoration(
-                              color: const Color(0xFFF3F4F6),
+                              color: AppColor.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),

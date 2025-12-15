@@ -1,1 +1,0 @@
-String baseUrl="https://mse.motorsporteasy.cloud";

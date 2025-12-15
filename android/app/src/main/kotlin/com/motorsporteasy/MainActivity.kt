@@ -1,4 +1,4 @@
-package com.example.motor_sport_easy
+package com.motorsporteasy
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -45,53 +45,53 @@ class HomeView extends GetView<HomeController> {
                         maxLines: 1,
                       ),
                     ),
-                    SizedBox(
-                      child: InkWell(
-                        onTap: () {
-                          controller.showRequestDialog(context);
-                        },
-                        child: Container(
-                          width: screenWidth*90/360,
-                          padding: const EdgeInsets.all(4),
-                          decoration: ShapeDecoration(
-                            color: const Color(0x4CF93939),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 2,
-                            children: [
-                              Icon(Icons.add,size: screenWidth*23/360,),
-                              Text(
-                                'Request',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: const Color(0xFF3A3A3A),
-                                  fontSize: screenWidth*10/360,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(width: 3),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: screenWidth*30/360,
-                      child: InkWell(
-                          onTap: () {
-                            controller.logoutOrDeleteAccountDialog(context);
-                          },
-                          child: Icon(Icons.logout,size: screenWidth*23/360,)
-                      ),
-
-                    )
+                    // SizedBox(
+                    //   child: InkWell(
+                    //     onTap: () {
+                    //       controller.showRequestDialog(context);
+                    //     },
+                    //     child: Container(
+                    //       width: screenWidth*90/360,
+                    //       padding: const EdgeInsets.all(4),
+                    //       decoration: ShapeDecoration(
+                    //         color: const Color(0x4CF93939),
+                    //         shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(4),
+                    //         ),
+                    //       ),
+                    //       child: Row(
+                    //         mainAxisSize: MainAxisSize.min,
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         crossAxisAlignment: CrossAxisAlignment.center,
+                    //         spacing: 2,
+                    //         children: [
+                    //           Icon(Icons.add,size: screenWidth*23/360,),
+                    //           Text(
+                    //             'Request',
+                    //             textAlign: TextAlign.center,
+                    //             style: TextStyle(
+                    //               color: const Color(0xFF3A3A3A),
+                    //               fontSize: screenWidth*10/360,
+                    //               fontFamily: 'Inter',
+                    //               fontWeight: FontWeight.w400,
+                    //             ),
+                    //           ),
+                    //           SizedBox(width: 3),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: screenWidth*30/360,
+                    //   child: InkWell(
+                    //       onTap: () {
+                    //         controller.logoutOrDeleteAccountDialog(context);
+                    //       },
+                    //       child: Icon(Icons.logout,size: screenWidth*23/360,)
+                    //   ),
+                    //
+                    // )
                   ],
                 ),
               ),
@@ -135,6 +135,13 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColor.primaryColor,
+        onPressed: (){
+          Get.toNamed(Routes.PROFILE);
+        },
+        child: Icon(Icons.account_circle,color:Colors.white,),
+      )
     );
   }
 }

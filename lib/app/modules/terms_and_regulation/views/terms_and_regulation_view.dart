@@ -10,9 +10,9 @@ class TermsAndRegulationView extends GetView<TermsAndRegulationController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Terms & Regulations',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: AppColor.white),
         ),
         centerTitle: true,
       ),
@@ -52,7 +52,7 @@ You can also choose "Skip" to continue without enabling notifications.
               ),
               child:Text(
                 "Agree & Enable Notifications",
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 16, color: AppColor.white),
               ),
             ),
 

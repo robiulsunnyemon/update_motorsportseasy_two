@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../data/model/notification_api_model.dart';
 import '../../shared_pref_helper/shared_pref_helper.dart';
-import '../contants.dart';
+import '../base_url.dart';
 
 
 class NotificationApiService {

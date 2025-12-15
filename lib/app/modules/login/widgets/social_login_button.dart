@@ -1,6 +1,8 @@
 
 
 import 'package:flutter/material.dart';
+
+import '../../../data/constants/app_color.dart';
 class SocialLoginButton extends StatelessWidget {
   final IconData icon;
   final String text;
@@ -14,7 +16,7 @@ class SocialLoginButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.white,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Colors.grey.shade300),
           boxShadow: [

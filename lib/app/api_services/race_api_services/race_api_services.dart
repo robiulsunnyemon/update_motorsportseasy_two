@@ -2,7 +2,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../data/model/race_api_model.dart';
-import '../contants.dart';
+import '../base_url.dart';
 
 
 

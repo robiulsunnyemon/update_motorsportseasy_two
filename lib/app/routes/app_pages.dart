@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../modules/bottom_navigation_bar/bindings/bottom_navigation_bar_binding.dart';
 import '../modules/bottom_navigation_bar/views/bottom_navigation_bar_view.dart';
 import '../modules/event/bindings/event_binding.dart';
@@ -14,8 +13,16 @@ import '../modules/notification/bindings/notification_binding.dart';
 import '../modules/notification/views/notification_view.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
+import '../modules/privacy/bindings/privacy_binding.dart';
+import '../modules/privacy/views/privacy_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/racing_details/bindings/racing_details_binding.dart';
 import '../modules/racing_details/views/racing_details_view.dart';
+import '../modules/report_form/bindings/report_form_binding.dart';
+import '../modules/report_form/views/report_form_view.dart';
+import '../modules/request_form/bindings/request_form_binding.dart';
+import '../modules/request_form/views/request_form_view.dart';
 import '../modules/reset_password/bindings/reset_password_binding.dart';
 import '../modules/reset_password/views/reset_password_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
@@ -88,6 +95,26 @@ class AppPages {
       name: _Paths.TERMS_AND_REGULATION,
       page: () => const TermsAndRegulationView(),
       binding: TermsAndRegulationBinding(),
+    ),
+    GetPage(
+      name: _Paths.REQUEST_FORM,
+      page: () => const RequestFormView(),
+      binding: RequestFormBinding(),
+    ),
+    GetPage(
+      name: _Paths.REPORT_FORM,
+      page: () => const ReportFormView(),
+      binding: ReportFormBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRIVACY,
+      page: () => const PrivacyView(),
+      binding: PrivacyBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

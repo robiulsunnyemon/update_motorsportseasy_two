@@ -108,12 +108,12 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                     },
                     text: Obx(
                           () => controller.isLoading.value
-                          ? CircularProgressIndicator(color: Colors.white,padding: EdgeInsets.all(8),)
+                          ? CircularProgressIndicator(color: AppColor.white,padding: EdgeInsets.all(8),)
                           : Text(
                         "Signup",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: AppColor.white,
                           fontSize: 16,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.bold,
@@ -158,7 +158,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColor.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.grey.shade300),
         boxShadow: [

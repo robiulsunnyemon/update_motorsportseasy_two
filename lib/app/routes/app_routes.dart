@@ -15,6 +15,10 @@ abstract class Routes {
   static const FORGET_PASSWORD = _Paths.FORGET_PASSWORD;
   static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
   static const TERMS_AND_REGULATION = _Paths.TERMS_AND_REGULATION;
+  static const REQUEST_FORM = _Paths.REQUEST_FORM;
+  static const REPORT_FORM = _Paths.REPORT_FORM;
+  static const PRIVACY = _Paths.PRIVACY;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -32,4 +36,8 @@ abstract class _Paths {
   static const FORGET_PASSWORD = '/forget-password';
   static const RESET_PASSWORD = '/reset-password';
   static const TERMS_AND_REGULATION = '/terms-and-regulation';
+  static const REQUEST_FORM = '/request-form';
+  static const REPORT_FORM = '/report-form';
+  static const PRIVACY = '/privacy';
+  static const PROFILE = '/profile';
 }

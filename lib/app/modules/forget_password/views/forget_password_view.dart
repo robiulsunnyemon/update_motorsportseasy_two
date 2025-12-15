@@ -123,7 +123,7 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color:AppColor.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.grey.shade300),
         boxShadow: [

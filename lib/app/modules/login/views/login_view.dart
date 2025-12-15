@@ -117,12 +117,15 @@ class LoginView extends GetView<LoginController> {
                     },
                     text: Obx(
                       () => controller.isLoading.value
-                          ? CircularProgressIndicator(color: Colors.white,padding: EdgeInsets.all(8),)
+                          ? CircularProgressIndicator(
+                              color: AppColor.white,
+                              padding: EdgeInsets.all(8),
+                            )
                           : Text(
                               "Login",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: AppColor.white,
                                 fontSize: 16,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.bold,

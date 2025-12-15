@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../../api_services/contants.dart';
+import '../../../api_services/base_url.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shared_pref_helper/shared_pref_helper.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +21,7 @@ class ResetPasswordController extends GetxController {
     try {
       isLoading.value=true;
       update();
-      final email = SharedPrefHelper.getEmail();
+      final email =await SharedPrefHelper.getEmail();
       final confirmPassword = confirmPasswordController.text.trim();
 
 

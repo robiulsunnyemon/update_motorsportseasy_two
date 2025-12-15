@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motor_sport_easy/app/data/constants/app_color.dart';
 
 class CustomLoginButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -21,13 +22,13 @@ class CustomLoginButton extends StatelessWidget {
         onPressed:onTap,
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll<Color>(
-            isBackgroundWhite?Colors.white:const Color(0xFFDC2626),
+            isBackgroundWhite?AppColor.white:AppColor.primaryColor,
           ),
           elevation: WidgetStatePropertyAll<double>(0.2),
           shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
             RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
-                side: isBorderRed?const BorderSide(color: Color(0xFFDC2626)):BorderSide.none
+                side: isBorderRed? BorderSide(color: AppColor.primaryColor):BorderSide.none
             ),
           ),
         ),

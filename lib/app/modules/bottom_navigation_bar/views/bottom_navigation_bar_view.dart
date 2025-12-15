@@ -14,7 +14,7 @@ class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
             () => BottomNavigationBar(
           currentIndex: controller.currentIndex.value,
           onTap: controller.changePage,
-          backgroundColor:const Color(0xFFECECEC),
+          backgroundColor:AppColor.white,
           selectedItemColor: AppColor.primaryColor,
           selectedLabelStyle: TextStyle(
             color: Colors.black,

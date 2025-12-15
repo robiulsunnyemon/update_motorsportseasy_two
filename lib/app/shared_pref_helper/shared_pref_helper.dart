@@ -305,12 +305,33 @@ class SharedPrefHelper {
   static const String _userBoxName = 'userBox';
   static const String _settingsBoxName = 'settingsBox';
   static const String _notificationBoxName = 'notificationBox';
-
   static const String _uidKey = 'uid';
   static const String _emailKey = 'email';
   static const String _tokenKey = 'token';
   static const String _isTermsAcceptedKey = 'isTermsAccepted';
   static const String _isAcceptedNotificationKey = 'isAcceptedNotification';
+  static const String _profileImageBox = 'profileImageBox';
+  static const String _profileImagePathKey = 'profileImagePath';
+
+
+
+
+  /// প্রোফাইল ইমেজ পাথ সেভ করার ফাংশন
+  static Future<void> saveProfileImagePath(String? path) async {
+    final box = await Hive.openBox<String>(_profileImageBox);
+    if (path != null) {
+      await box.put(_profileImagePathKey, path);
+    } else {
+      await box.delete(_profileImagePathKey); // যদি ইমেজ রিমুভ করতে চান
+    }
+  }
+
+  /// সেভ করা প্রোফাইল ইমেজ পাথ পাওয়ার ফাংশন
+  static Future<String?> getProfileImagePath() async {
+    final box = await Hive.openBox<String>(_profileImageBox);
+    return box.get(_profileImagePathKey);
+  }
+
 
   // User related methods
   static Future<void> saveUid(String uid) async {
@@ -334,6 +355,7 @@ class SharedPrefHelper {
     await box.put(_emailKey, email);
   }
 
+
   static Future<String?> getEmail() async {
     final box = await Hive.openBox(_userBoxName);
     return box.get(_emailKey);
@@ -348,6 +370,8 @@ class SharedPrefHelper {
     final box = await Hive.openBox(_userBoxName);
     await box.put(_tokenKey, token);
   }
+
+
 
   static Future<String?> getToken() async {
     final box = await Hive.openBox(_userBoxName);
@@ -380,15 +404,31 @@ class SharedPrefHelper {
     await box.put(_isAcceptedNotificationKey, response);
   }
 
+
+  static Future<void> saveSubscriptionState(bool response) async {
+    final box = await Hive.openBox(_settingsBoxName);
+    await box.put("subscription_state", response);
+  }
+
+
   static Future<bool?> getIsAcceptedNotification() async {
     final box = await Hive.openBox(_settingsBoxName);
     return box.get(_isAcceptedNotificationKey);
+  }
+
+  static Future<bool?> getSubscriptionState() async {
+    final box = await Hive.openBox(_settingsBoxName);
+    return box.get("subscription_state");
   }
 
   static Future<void> removeIsAcceptedNotification() async {
     final box = await Hive.openBox(_settingsBoxName);
     await box.delete(_isAcceptedNotificationKey);
   }
+
+
+
+
 
   // Notification related methods
   static Future<void> saveNotificationState(String raceId, Map<String, bool> state) async {

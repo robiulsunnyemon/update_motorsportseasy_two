@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../data/constants/app_color.dart';
+
 class CustomElevatedButton extends StatelessWidget {
   final VoidCallback onTap;
   final String level;
@@ -22,13 +24,13 @@ class CustomElevatedButton extends StatelessWidget {
         onPressed:onTap,
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll<Color>(
-            isBackgroundWhite?Colors.white:const Color(0xFFDC2626),
+            isBackgroundWhite?AppColor.white:AppColor.primaryColor,
           ),
           elevation: WidgetStatePropertyAll<double>(0.2),
           shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
             RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
-                side: isBorderRed?const BorderSide(color: Color(0xFFDC2626)):BorderSide.none
+                side: isBorderRed?BorderSide(color: AppColor.primaryColor):BorderSide.none
             ),
           ),
         ),
@@ -39,7 +41,7 @@ class CustomElevatedButton extends StatelessWidget {
               level,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: isBackgroundWhite?const Color(0xFFDC2626): Colors.white,
+                color: isBackgroundWhite?AppColor.primaryColor:AppColor.white,
                 fontSize: 16,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,

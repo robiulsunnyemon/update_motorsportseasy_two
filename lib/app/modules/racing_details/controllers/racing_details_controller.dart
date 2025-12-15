@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:motor_sport_easy/app/api_services/contants.dart';
+import 'package:motor_sport_easy/app/api_services/base_url.dart';
 import '../../../api_services/race_api_services/race_api_services.dart';
 import '../../../data/model/race_api_model.dart';
 import '../../../shared_pref_helper/shared_pref_helper.dart';

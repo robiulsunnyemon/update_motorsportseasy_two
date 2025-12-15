@@ -1,9 +1,9 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import '../../../routes/app_pages.dart';
+import '../../../shared_pref_helper/shared_pref_helper.dart';
 
 class SubscriptionController extends GetxController {
   final InAppPurchase _iap = InAppPurchase.instance;
@@ -14,12 +14,29 @@ class SubscriptionController extends GetxController {
   var isLoading = true.obs;
   var errorMessage = ''.obs;
 
+  late final StreamSubscription<List<PurchaseDetails>> _subscription;
+
+  // Temporary variable to keep track of purchased state
+  var isPremium = false.obs;
 
   @override
   void onInit() {
     super.onInit();
+    _subscription = _iap.purchaseStream.listen(
+      _handlePurchaseUpdates,
+      onDone: () {},
+      onError: (error) {
+        Get.snackbar('IAP Stream Error', '$error',
+            backgroundColor: Colors.red, colorText: Colors.white);
+      },
+    );
     initializeIAP();
-    _iap.purchaseStream.listen(_handlePurchaseUpdates);
+  }
+
+  @override
+  void onClose() {
+    _subscription.cancel();
+    super.onClose();
   }
 
   Future<void> initializeIAP() async {
@@ -36,6 +53,8 @@ class SubscriptionController extends GetxController {
       final response = await _iap.queryProductDetails(_productIds.toSet());
       if (response.error != null) {
         errorMessage.value = "Error loading products: ${response.error}";
+      } else if (response.productDetails.isEmpty) {
+        errorMessage.value = "No products found in store";
       } else {
         products.value = response.productDetails;
       }
@@ -45,7 +64,6 @@ class SubscriptionController extends GetxController {
       isLoading.value = false;
     }
   }
-
 
   void purchaseProduct(ProductDetails product) {
     try {
@@ -61,52 +79,24 @@ class SubscriptionController extends GetxController {
     }
   }
 
-
-
-
-
-
-  void _navigateToPremiumPage() {
-    Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
-  }
-
-
   Future<void> _handlePurchaseUpdates(List<PurchaseDetails> purchases) async {
     for (final purchase in purchases) {
-      if (purchase.status == PurchaseStatus.purchased) {
-        final token = purchase.verificationData.serverVerificationData;
+      if (purchase.status == PurchaseStatus.pending) {
+        Get.snackbar(
+          'Purchase Pending',
+          'Your purchase is pending...',
+          backgroundColor: Colors.orange,
+          colorText: Colors.white,
+        );
+      } else if (purchase.status == PurchaseStatus.purchased ||
+          purchase.status == PurchaseStatus.restored) {
+        // Temporary client-side verification
+        _verifyPurchaseLocally(purchase);
 
-        try {
-          // Send token to backend
-          final response = await http.post(
-            Uri.parse("https://your-backend.com/verify-subscription"),
-            headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({
-              "user_id": "123",
-              "purchase_token": token,
-              "product_id": purchase.productID,
-            }),
-          );
-
-          if (response.statusCode == 200) {
-            Get.snackbar(
-              'Success',
-              'Premium subscription activated!',
-              backgroundColor: Colors.green,
-              colorText: Colors.white,
-            );
-            _navigateToPremiumPage();
-          } else {
-            throw Exception('Backend verification failed');
-          }
-        } catch (e) {
-          Get.snackbar(
-            'Verification Error',
-            'Failed to verify purchase: $e',
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-          );
-        }
+        // -------------------------
+        // Backend verification (uncomment for production)
+        // await _verifyPurchaseBackend(purchase);
+        // -------------------------
       } else if (purchase.status == PurchaseStatus.error) {
         Get.snackbar(
           'Purchase Failed',
@@ -115,9 +105,87 @@ class SubscriptionController extends GetxController {
           colorText: Colors.white,
         );
       }
+
+      if (purchase.pendingCompletePurchase) {
+        await _iap.completePurchase(purchase);
+      }
     }
   }
 
+  /// Client-side temporary verification
+  void _verifyPurchaseLocally(PurchaseDetails purchase) {
+    // Warning: This does NOT confirm purchase with App Store / Play Store
+    final token = purchase.verificationData.serverVerificationData;
+
+    if (token.isNotEmpty) {
+      isPremium.value = true; // temporarily unlock premium
+      Get.snackbar(
+        'Success',
+        'Premium features temporarily unlocked!',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+      _navigateToPremiumPage();
+    } else {
+      Get.snackbar(
+        'Verification Failed',
+        'Could not verify purchase token locally',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  /// Backend verification (for production use)
+  /*
+  Future<void> _verifyPurchaseBackend(PurchaseDetails purchase) async {
+    final token = purchase.verificationData.serverVerificationData;
+
+    try {
+      // Replace "123" with the logged-in user's actual ID
+      final response = await http.post(
+        Uri.parse("https://your-backend.com/verify-subscription"),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          "user_id": "123",
+          "purchase_token": token,
+          "product_id": purchase.productID,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        isPremium.value = true; // unlock premium after server verification
+        Get.snackbar(
+          'Success',
+          'Premium subscription activated!',
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        _navigateToPremiumPage();
+      } else {
+        throw Exception('Backend verification failed');
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Verification Error',
+        'Failed to verify purchase: $e',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+  */
+
+  Future<void> _navigateToPremiumPage() async {
+    await SharedPrefHelper.saveSubscriptionState(true);
+    Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
+  }
+
   ProductDetails? get firstProduct => products.isNotEmpty ? products.first : null;
-  String get formattedPrice => products.isNotEmpty ? products.first.price : '£3';
+
+  String get formattedPrice {
+    if (products.isEmpty) return '£3';
+    final p = products.first;
+    return '${p.price} ${p.currencyCode}';
+  }
 }

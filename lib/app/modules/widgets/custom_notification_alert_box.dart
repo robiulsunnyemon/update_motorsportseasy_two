@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../data/constants/app_color.dart';
+
 
 class CustomNotificationAlertBox extends StatelessWidget {
   const CustomNotificationAlertBox({super.key});
@@ -11,7 +13,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
       width: 361,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       decoration: ShapeDecoration(
-        color: Colors.white,
+        color:AppColor.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: Column(
@@ -24,7 +26,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: ShapeDecoration(
-              color: const Color(0xFFF3F4F6),
+              color: AppColor.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4)),
             ),
@@ -46,7 +48,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
                 ),
                 Switch(
                   value: true,
-                  activeTrackColor: Colors.red,
+                  activeTrackColor: AppColor.primaryColor,
                   onChanged: (bool value) {},
                 ),
               ],
@@ -56,7 +58,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: ShapeDecoration(
-              color: const Color(0xFFF3F4F6),
+              color: AppColor.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4)),
             ),
@@ -78,7 +80,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
                 ),
                 Switch(
                   value: true,
-                  activeTrackColor: Colors.red,
+                  activeTrackColor: AppColor.primaryColor,
                   onChanged: (bool value) {},
                 ),
               ],
@@ -88,7 +90,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: ShapeDecoration(
-              color: const Color(0xFFF3F4F6),
+              color: AppColor.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4)),
             ),
@@ -110,7 +112,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
                 ),
                 Switch(
                   value: true,
-                  activeTrackColor: Colors.red,
+                  activeTrackColor: AppColor.primaryColor,
                   onChanged: (bool value) {},
                 ),
               ],
@@ -124,7 +126,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
               onPressed: () {},
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll<Color>(
-                    const Color(0xFFDC2626)),
+                    AppColor.primaryColor),
                 elevation: WidgetStatePropertyAll<double>(0.2),
                 shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -137,7 +139,7 @@ class CustomNotificationAlertBox extends StatelessWidget {
                     'Save',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color:AppColor.white,
                       fontSize: 16,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w400,
