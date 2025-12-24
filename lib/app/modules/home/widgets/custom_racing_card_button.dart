@@ -165,46 +165,25 @@ class CustomRacingCardButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 15,
           children: [
-            Expanded(
-              child: SizedBox(
-                width: racingNameWidth,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    racingName,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: racingNameFontSize,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                width: sponsorTextWidth,
-                child: Text(
-                  'Sponsored by',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: sponsorTextFontSize,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ),
+
+            // Expanded(
+            //   child: SizedBox(
+            //     width: sponsorTextWidth,
+            //     child: Text(
+            //       'Sponsored by',
+            //       style: TextStyle(
+            //         color: Colors.black,
+            //         fontSize: sponsorTextFontSize,
+            //         fontFamily: 'Inter',
+            //         fontWeight: FontWeight.w400,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Row(
-              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               spacing: screenWidth * 0.04, // 4% of screen width
@@ -237,6 +216,26 @@ class CustomRacingCardButton extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Expanded(
+              child: SizedBox(
+                width: racingNameWidth,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    racingName,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: racingNameFontSize,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

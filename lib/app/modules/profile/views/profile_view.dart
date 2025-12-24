@@ -43,28 +43,22 @@ class ProfileView extends GetView<ProfileController> {
             ),
 
 
-            Obx((){
-              return _buildListTile(
-                title: controller.isActiveNotification.value?'Stop Send Notification':"Start Send Notification",
-                icon: controller.isActiveNotification.value?Icons.notifications_off:Icons.notifications,
-                onTap: () async {
-                  final isTermsAccepted =await SharedPrefHelper.getIsTermsAccepted();
-                  if(isTermsAccepted==true){
-                    controller.disableNotifications();
-                  }else{
-                    controller.notificationActive();
-                  }
-                },
-              );
-            }),
+            // Obx((){
+            //   return _buildListTile(
+            //     title: controller.isActiveNotification.value?'Stop Send Notification':"Start Send Notification",
+            //     icon: controller.isActiveNotification.value?Icons.notifications_off:Icons.notifications,
+            //     onTap: () async {
+            //       final isTermsAccepted =await SharedPrefHelper.getIsTermsAccepted();
+            //       if(isTermsAccepted==true){
+            //         controller.disableNotifications();
+            //       }else{
+            //         controller.notificationActive();
+            //       }
+            //     },
+            //   );
+            // }),
 
-            _buildListTile(
-              title: 'Cancel Subscription',
-              icon: Icons.cancel,
-              onTap: () {
-                _showCancelSubscriptionDialog(context);
-              },
-            ),
+
 
             _buildListTile(
               title: 'Request a Race',
@@ -95,6 +89,18 @@ class ProfileView extends GetView<ProfileController> {
               icon: Icons.logout,
               onTap: () {
                 _showLogoutConfirmationDialog(context);
+              },
+            ),
+
+
+            SizedBox(height: 100,),
+
+
+            _buildListTile(
+              title: 'Cancel Subscription',
+              icon: Icons.cancel,
+              onTap: () {
+                _showCancelSubscriptionDialog(context);
               },
             ),
 

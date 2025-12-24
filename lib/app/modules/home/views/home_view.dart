@@ -35,7 +35,7 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(
                       width: screenWidth * .556,
                       child: Text(
-                        'Select racing series',
+                        'Select A Series',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: screenWidth * 24 / 360,
@@ -112,7 +112,8 @@ class HomeView extends GetView<HomeController> {
                 return SliverList.builder(
                   itemCount: controller.allRacesList.length,
                   itemBuilder: (context, index) {
-                    final race = controller.allRacesList[index];
+                    final indx=controller.allRacesList.length-index-1;
+                    final race = controller.allRacesList[indx];
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 4,

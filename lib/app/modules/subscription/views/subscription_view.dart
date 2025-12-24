@@ -122,7 +122,7 @@ class SubscriptionView extends GetView<SubscriptionController> {
                       children: [
                         Text(
                           // controller.formattedPrice,
-                          "Only £3",
+                          "Only £3.19",
                           style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,

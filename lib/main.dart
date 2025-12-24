@@ -49,7 +49,10 @@ Future<void> main() async {
 
 
 
+  // runApp(
+  //   MotorSportEasyApp(initialRoute: initialRoute),
+  // );
   runApp(
-    MotorSportEasyApp(initialRoute: initialRoute),
+    MotorSportEasyApp(initialRoute: Routes.HOME),
   );
 }
