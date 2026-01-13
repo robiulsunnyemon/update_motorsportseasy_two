@@ -353,8 +353,7 @@ class LoginController extends GetxController {
         if (hasSubscription) {
           Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
         } else {
-          // Get.offAllNamed(Routes.SUBSCRIPTION);
-          Get.offAllNamed(Routes.PROFILE);
+          Get.offAllNamed(Routes.SUBSCRIPTION);
         }
         return;
       }
