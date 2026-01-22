@@ -94,6 +94,7 @@ class PrivacyView extends GetView<PrivacyController> {
             'Your Privacy Matters',
             style: TextStyle(
               fontSize: 20,
+              color: AppColor.white,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -103,7 +104,7 @@ class PrivacyView extends GetView<PrivacyController> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              color: Colors.grey[700],
+              color: AppColor.greyColor,
               height: 1.5,
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 // class CustomRacingCardButton extends StatelessWidget {
 //   final String racingName;
 //   final String sponsorName;
@@ -119,13 +118,11 @@ import 'package:flutter/material.dart';
 //   }
 // }
 
-
-
-
 class CustomRacingCardButton extends StatelessWidget {
   final String racingName;
   final String sponsorLogo;
   final VoidCallback onTap;
+
   const CustomRacingCardButton({
     super.key,
     required this.racingName,
@@ -142,33 +139,37 @@ class CustomRacingCardButton extends StatelessWidget {
     // Calculate dynamic sizes based on screen dimensions
     final double racingNameWidth = screenWidth * 0.32; // 32% of screen width
     final double sponsorTextWidth = screenWidth * 0.2; // 20% of screen width
-    final double logoSize = screenHeight * 0.05; // 5% of screen height
-
+    final double logoSize = screenHeight * 0.09; // 5% of screen height
 
     // Font sizes
-    final double racingNameFontSize = screenWidth * 0.04; // 4% of screen width
+    final double racingNameFontSize = screenWidth * 0.05; // 4% of screen width
     final double sponsorTextFontSize = screenWidth * 0.03; // 3% of screen width
-
 
     return ElevatedButton(
       onPressed: onTap,
       style: ButtonStyle(
-        backgroundColor: WidgetStatePropertyAll<Color>(const Color(0xFFF3F4F6)),
-        elevation: WidgetStatePropertyAll<double>(0.2),
-        shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+        backgroundColor: const WidgetStatePropertyAll(Color(0xFF0F0F0F)),
+        elevation: const WidgetStatePropertyAll(10),
+        shadowColor: const WidgetStatePropertyAll(Color(0x44000000)),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+            side: const BorderSide(
+              color: Color(0x22FFFFFF), // subtle inner border
+              width: 0.6,
+            ),
+          ),
         ),
-        padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
-          EdgeInsets.symmetric(horizontal: screenWidth * 0.03), // 3% of screen width
+        overlayColor: const WidgetStatePropertyAll(
+          Color(0x1AFFFFFF),
         ),
       ),
-      child: Padding(
+        child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             // Expanded(
             //   child: SizedBox(
             //     width: sponsorTextWidth,
@@ -191,14 +192,15 @@ class CustomRacingCardButton extends StatelessWidget {
                 Container(
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: screenWidth * 0.01, // 1% of screen width
+                    spacing: screenWidth * 0.01,
+                    // 1% of screen width
                     children: [
                       // Logo section
                       SizedBox(
@@ -208,10 +210,11 @@ class CustomRacingCardButton extends StatelessWidget {
                           sponsorLogo,
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
-                            return Icon(Icons.broken_image,);
+                            return Icon(Icons.broken_image);
                           },
                         ),
                       ),
+                      SizedBox(width: 10),
                     ],
                   ),
                 ),
@@ -226,10 +229,10 @@ class CustomRacingCardButton extends StatelessWidget {
                     racingName,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: racingNameFontSize,
                       fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w800,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

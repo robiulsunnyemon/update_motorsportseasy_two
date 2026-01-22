@@ -10,11 +10,17 @@ class NotificationView extends GetView<NotificationController> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 120, title: const CustomAppbarTitle()),
+      appBar: AppBar(
+        toolbarHeight: screenHeight * 120 / 652,
+        title: const CustomAppbarTitle(),
+      ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator(color: AppColor.primaryColor,));
+          return Center(
+            child: CircularProgressIndicator(color: AppColor.primaryColor),
+          );
         }
 
         if (controller.errorMessage.isNotEmpty) {
@@ -23,7 +29,12 @@ class NotificationView extends GetView<NotificationController> {
 
         final response = controller.notifications;
         if (response.isEmpty) {
-          return const Center(child: Text('You have no notifications'));
+          return Center(
+            child: Text(
+              'You have no notifications',
+              style: TextStyle(color: AppColor.greyColor),
+            ),
+          );
         }
 
         return RefreshIndicator(
@@ -33,13 +44,14 @@ class NotificationView extends GetView<NotificationController> {
           },
           child: ListView.builder(
             physics: const AlwaysScrollableScrollPhysics(),
-            padding:  EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             itemCount: response.length,
             itemBuilder: (context, index) {
               int i = response.length - index - 1;
               final notification = response[i];
-              String formatted = DateFormat('dd/MM/yyyy hh:mm a')
-                  .format(notification.createdAt.toLocal());
+              String formatted = DateFormat(
+                'dd/MM/yyyy hh:mm a',
+              ).format(notification.createdAt.toLocal());
               return Card(
                 color: AppColor.white,
                 child: ListTile(
@@ -51,10 +63,8 @@ class NotificationView extends GetView<NotificationController> {
                       Text(formatted),
                     ],
                   ),
-
                 ),
               );
-
             },
           ),
         );

@@ -15,9 +15,12 @@ class MotorSportEasyApp extends StatelessWidget {
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(
-          backgroundColor: AppColor.primaryColor,
+          backgroundColor: AppColor.blackColor,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: AppColor.blackColor,
         ),
         switchTheme: SwitchThemeData(
           trackOutlineColor: const WidgetStatePropertyAll<Color>(Colors.white),
@@ -37,7 +40,7 @@ class MotorSportEasyApp extends StatelessWidget {
         ),
         textTheme: TextTheme(
           headlineMedium: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 18, // Use fixed size or calculate in responsive way
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,

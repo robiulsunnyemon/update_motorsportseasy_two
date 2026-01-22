@@ -145,7 +145,7 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
               Text(
                 'Verification',
                 style: TextStyle(
-                  color: const Color(0xFF1A1A1A),
+                  color: AppColor.white,
                   fontSize: 32,
                   fontFamily: 'PlayfairDisplay',
                   fontWeight: FontWeight.w600,
@@ -153,10 +153,10 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
               ),
               const SizedBox(height: 10),
 
-              const Text(
+              Text(
                 'We sent a verification code to your email',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: AppColor.greyColor,
                   fontSize: 12,
                   fontFamily: 'Inter',
                 ),
@@ -217,10 +217,10 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     "Didn't receive code?",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: AppColor.greyColor,
                       fontSize: 14,
                       fontFamily: 'Inter',
                     ),

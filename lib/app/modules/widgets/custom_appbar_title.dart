@@ -5,6 +5,6 @@ class CustomAppbarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Image.asset("assets/images/img.png");
+    return  Image.asset("assets/images/logo_image.jpg");
   }
 }

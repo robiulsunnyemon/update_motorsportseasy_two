@@ -37,7 +37,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                   Text(
                     "Join us and explore your passion",
                     style: TextStyle(
-                      color: Colors.grey.shade600,
+                      color: AppColor.greyColor,
                       fontFamily: 'Inter',
                       fontSize: 14,
                     ),

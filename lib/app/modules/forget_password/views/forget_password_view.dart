@@ -35,7 +35,7 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                   Text(
                     "No worries! It happens. Please enter the email address linked with your account",
                     style: TextStyle(
-                      color: Colors.grey.shade600,
+                      color: AppColor.greyColor,
                       fontFamily: 'Inter',
                       fontSize: 12,
                     ),
@@ -92,7 +92,7 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                       children: [
                         Icon(
                           Icons.arrow_back,
-                          color: Colors.grey.shade600,
+                          color: AppColor.greyColor,
                           size: 20,
                         ),
                         SizedBox(width: 5),

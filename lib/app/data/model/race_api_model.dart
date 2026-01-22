@@ -40,6 +40,23 @@ class RaceAPIModel {
       'events': events.map((event) => event.toJson()).toList(),
     };
   }
+  RaceAPIModel copyWith({
+    int? id,
+    String? name,
+    String? imageLogo,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    List<RaceEventAPIModel>? events,
+  }) {
+    return RaceAPIModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      imageLogo: imageLogo ?? this.imageLogo,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      events: events ?? this.events,
+    );
+  }
 }
 
 class RaceEventAPIModel {

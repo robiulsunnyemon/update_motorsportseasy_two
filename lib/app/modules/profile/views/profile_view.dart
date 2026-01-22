@@ -26,12 +26,14 @@ class ProfileView extends GetView<ProfileController> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
         child: Column(
           children: [
             // Profile Header Section
-            _buildProfileHeader(),
-            SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _buildProfileHeader(),
+            ),
+            SizedBox(height: 16),
 
             SizedBox(height: 8,),
             _buildListTile(
@@ -119,7 +121,7 @@ class ProfileView extends GetView<ProfileController> {
     required VoidCallback onTap,
   }) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       color: Colors.white,
       child: ListTile(
         leading: Icon(

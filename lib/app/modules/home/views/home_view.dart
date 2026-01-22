@@ -16,11 +16,11 @@ class HomeView extends GetView<HomeController> {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: screenHeight * 120 / 752,
+        toolbarHeight: screenHeight * 120 / 652,
         title: CustomAppbarTitle(),
       ),
       body: RefreshIndicator(
-        color:  AppColor.primaryColor,
+        color: AppColor.primaryColor,
         onRefresh: () async {
           await controller.fetchAllRaces();
         },
@@ -37,7 +37,7 @@ class HomeView extends GetView<HomeController> {
                       child: Text(
                         'Select A Series',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: AppColor.white,
                           fontSize: screenWidth * 24 / 360,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
@@ -99,21 +99,26 @@ class HomeView extends GetView<HomeController> {
             Obx(() {
               if (controller.isLoading.value) {
                 return SliverToBoxAdapter(
-                  child: Center(child: CircularProgressIndicator(color: AppColor.primaryColor,)),
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: AppColor.primaryColor,
+                    ),
+                  ),
                 );
-              }else if(controller.allRacesList.isEmpty){
+              } else if (controller.allRacesList.isEmpty) {
                 return SliverToBoxAdapter(
-                  child: Center(child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 50),
-                    child: Text("You have no race"),
-                  )),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 50),
+                      child: Text("You have no race"),
+                    ),
+                  ),
                 );
-              }else {
+              } else {
                 return SliverList.builder(
                   itemCount: controller.allRacesList.length,
                   itemBuilder: (context, index) {
-                    final indx=controller.allRacesList.length-index-1;
-                    final race = controller.allRacesList[indx];
+                    final race = controller.allRacesList[index];
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                         vertical: 4,
@@ -125,6 +130,9 @@ class HomeView extends GetView<HomeController> {
                         onTap: () {
                           Get.toNamed(
                             "${Routes.RACING_DETAILS}/${race.id}/${Uri.encodeComponent(race.name)}",
+                            arguments: {
+                              'sponsorLogo': race.imageLogo,
+                            },
                           );
                         },
                       ),
@@ -138,11 +146,11 @@ class HomeView extends GetView<HomeController> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.primaryColor,
-        onPressed: (){
+        onPressed: () {
           Get.toNamed(Routes.PROFILE);
         },
-        child: Icon(Icons.account_circle,color:Colors.white,),
-      )
+        child: Icon(Icons.account_circle, color: Colors.white),
+      ),
     );
   }
 }

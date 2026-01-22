@@ -23,6 +23,8 @@ class SignupView extends GetView<SignupController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Image.asset("assets/images/logo_image.jpg"),
+                  SizedBox(height: 70),
                   Text(
                     "Create Account ✨",
                     style: TextStyle(
@@ -36,7 +38,7 @@ class SignupView extends GetView<SignupController> {
                   Text(
                     "Join us and explore your passion",
                     style: TextStyle(
-                      color: Colors.grey.shade600,
+                      color: AppColor.greyColor,
                       fontFamily: 'Inter',
                       fontSize: 14,
                     ),
@@ -68,7 +70,7 @@ class SignupView extends GetView<SignupController> {
                   ),
                   const SizedBox(height: 16),
                   Obx(
-                        () => buildInputField(
+                    () => buildInputField(
                       label: 'Password',
                       controller: controller.passwordController,
                       obscureText: controller.isPasswordHidden.value,
@@ -95,7 +97,7 @@ class SignupView extends GetView<SignupController> {
                   ),
                   const SizedBox(height: 16),
                   Obx(
-                        () => buildInputField(
+                    () => buildInputField(
                       label: 'Confirm Password',
                       controller: controller.confirmPasswordController,
                       obscureText: controller.isConfirmHidden.value,
@@ -104,7 +106,8 @@ class SignupView extends GetView<SignupController> {
                           return 'Confirm Password is required';
                         } else if (value.length < 6) {
                           return 'Confirm Password must be at least 6 characters';
-                        }else if(value!=controller.passwordController.text){
+                        } else if (value !=
+                            controller.passwordController.text) {
                           return "confirm password not match";
                         }
                         return null;
@@ -130,32 +133,38 @@ class SignupView extends GetView<SignupController> {
                       }
                     },
                     text: Obx(
-                            () => controller.isLoading.value
-                            ? CircularProgressIndicator(color: AppColor.white,padding: EdgeInsets.all(8),)
-                            : Text(
-                          "Signup",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 16,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                    )
+                      () => controller.isLoading.value
+                          ? CircularProgressIndicator(
+                              color: AppColor.white,
+                              padding: EdgeInsets.all(8),
+                            )
+                          : Text(
+                              "Signup",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: AppColor.white,
+                                fontSize: 16,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Already have an account?",
-                        style: TextStyle(fontFamily: 'Inter'),
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          color: AppColor.greyColor,
+                        ),
                       ),
                       TextButton(
                         onPressed: () {
                           Get.toNamed(Routes.LOGIN);
                         },
-                        child:Text(
+                        child: Text(
                           "Login",
                           style: TextStyle(
                             fontFamily: 'Inter',

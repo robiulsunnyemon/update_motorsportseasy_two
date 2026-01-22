@@ -22,7 +22,8 @@ class LoginView extends GetView<LoginController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 10),
+                  Image.asset("assets/images/logo_image.jpg"),
+                  const SizedBox(height: 100),
                   Text(
                     "Welcome Back 👋",
                     style: TextStyle(
@@ -36,7 +37,7 @@ class LoginView extends GetView<LoginController> {
                   Text(
                     "Login to continue your journey",
                     style: TextStyle(
-                      color: Colors.grey.shade600,
+                      color: AppColor.greyColor,
                       fontFamily: 'Inter',
                       fontSize: 14,
                     ),
@@ -139,9 +140,9 @@ class LoginView extends GetView<LoginController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Don't have an account?",
-                        style: TextStyle(fontFamily: 'Inter'),
+                        style: TextStyle(fontFamily: 'Inter',color: AppColor.greyColor),
                       ),
                       TextButton(
                         onPressed: () {

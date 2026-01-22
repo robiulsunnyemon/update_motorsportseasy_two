@@ -197,11 +197,15 @@ class HomeController extends GetxController {
   var allRacesList = <RaceAPIModel>[].obs;
   var isLoading = false.obs;
   var errorMessage = ''.obs;
+  var selectedSponsorLogo = ''.obs;
 
   @override
   void onInit() {
     fetchAllRaces();
     super.onInit();
+  }
+  void setSponsorLogo(String logo) {
+    selectedSponsorLogo.value = logo;
   }
 
   Future<void> fetchAllRaces() async {

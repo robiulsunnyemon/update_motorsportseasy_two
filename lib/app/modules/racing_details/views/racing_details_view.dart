@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:motor_sport_easy/app/modules/home/controllers/home_controller.dart';
 import '../../../data/constants/app_color.dart';
 import '../../widgets/custom_appbar_title.dart';
 import '../../widgets/custom_event_card.dart';
@@ -11,12 +11,12 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth=MediaQuery.of(context).size.width;
-    double screenHeight=MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: screenHeight*120/752,
+        toolbarHeight: screenHeight * 120 / 752,
         title: CustomAppbarTitle(),
         automaticallyImplyLeading: false,
       ),
@@ -25,7 +25,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child:Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,7 +34,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(Icons.arrow_back),
+                    child: Icon(Icons.arrow_back, color: AppColor.white),
                   ),
                   SizedBox(width: 8),
                   SizedBox(
@@ -42,7 +42,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                     child: Text(
                       controller.raceName,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: AppColor.white,
                         fontSize: 24,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
@@ -51,8 +51,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                     ),
                   ),
                 ],
-              )
-
+              ),
             ),
           ),
           SliverToBoxAdapter(
@@ -70,7 +69,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Obx(
-                          () => Column(
+                      () => Column(
                         children: [
                           Container(
                             width: double.infinity,
@@ -79,7 +78,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                               vertical: 4,
                             ),
                             decoration: ShapeDecoration(
-                              color:AppColor.white,
+                              color: AppColor.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
@@ -117,7 +116,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                               vertical: 4,
                             ),
                             decoration: ShapeDecoration(
-                              color:AppColor.white,
+                              color: AppColor.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
@@ -214,12 +213,15 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                   ),
                 ),
               );
-            } else if (controller.selectedRace.value == null || controller.selectedRace.value!.events.isEmpty) {
+            } else if (controller.selectedRace.value == null ||
+                controller.selectedRace.value!.events.isEmpty) {
               return SliverToBoxAdapter(
-                child: Center(child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 50.0),
-                  child: Text("No events available"),
-                )),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 50.0),
+                    child: Text("No events available"),
+                  ),
+                ),
               );
             } else {
               return SliverList(
@@ -232,6 +234,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                       eventLocation: event.location,
                       tvName: event.tvBroadcastChanel,
                       radioName: event.radioBroadcastChanel,
+                      sponsorLogo: controller.sponsorLogo,
                     ),
                   );
                 }, childCount: controller.selectedRace.value?.events.length),
@@ -243,4 +246,3 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
     );
   }
 }
-

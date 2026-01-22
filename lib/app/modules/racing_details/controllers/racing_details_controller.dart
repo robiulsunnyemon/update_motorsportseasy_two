@@ -10,6 +10,7 @@ import '../../../shared_pref_helper/shared_pref_helper.dart';
 class RacingDetailsController extends GetxController {
   final int raceId;
   final String raceName;
+  late final String sponsorLogo;
 
   RacingDetailsController({required this.raceId, required this.raceName});
 
@@ -46,6 +47,7 @@ class RacingDetailsController extends GetxController {
     }
   }
 
+
   Future<void> set3Hour() async {
     is3Hour.value = !is3Hour.value;
 
@@ -81,7 +83,18 @@ class RacingDetailsController extends GetxController {
       isLoading.value = true;
       await _loadNotificationState();
       final race = await RaceApiService.getRaceById(id);
-      selectedRace.value = race;
+      final now = DateTime.now();
+
+      // শুধু এখনও চলমান বা ভবিষ্যতের ইভেন্ট রাখুন
+      final filteredEvents = race.events.where((event) {
+        return event.startedAt.isAfter(now.subtract(Duration(hours: 1)));
+      }).toList();
+
+      // সময় অনুযায়ী সাজানো
+      filteredEvents.sort((a, b) => a.startedAt.compareTo(b.startedAt));
+
+      // নতুন race copy তৈরি করে filtered events assign করা
+      selectedRace.value = race.copyWith(events: filteredEvents);
     } catch (e) {
       Get.snackbar(
         'Error',
@@ -95,7 +108,8 @@ class RacingDetailsController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
+    final args = Get.arguments as Map<String, dynamic>;
+    sponsorLogo = args['sponsorLogo'];
     fetchRaceById(raceId);
     super.onInit();
   }

@@ -39,12 +39,13 @@ Future<void> main() async {
     initialRoute = Routes.LOGIN;
   } else {
     // Terms accepted and logged in
-    if(subscriptionState==true) {
-      initialRoute = Routes.BOTTOM_NAVIGATION_BAR;
-    }
-    else{
-      initialRoute = Routes.SUBSCRIPTION;
-    }
+    // if(subscriptionState==true) {
+    //   initialRoute = Routes.BOTTOM_NAVIGATION_BAR;
+    // }
+    // else{
+    //   initialRoute = Routes.SUBSCRIPTION;
+    // }
+    initialRoute = Routes.BOTTOM_NAVIGATION_BAR;
   }
 
 
