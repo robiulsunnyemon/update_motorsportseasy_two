@@ -7,6 +7,7 @@ import '../widgets/login_button.dart';
 
 class LoginView extends GetView<LoginController> {
   LoginView({super.key});
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -142,7 +143,10 @@ class LoginView extends GetView<LoginController> {
                     children: [
                       Text(
                         "Don't have an account?",
-                        style: TextStyle(fontFamily: 'Inter',color: AppColor.greyColor),
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          color: AppColor.greyColor,
+                        ),
                       ),
                       TextButton(
                         onPressed: () {
@@ -158,6 +162,11 @@ class LoginView extends GetView<LoginController> {
                         ),
                       ),
                     ],
+                  ),
+                  GoogleButton(
+                    onPressed: () {
+                      controller.signInWithGoogle();
+                    },
                   ),
                 ],
               ),
@@ -199,6 +208,52 @@ class LoginView extends GetView<LoginController> {
           labelText: label,
           border: InputBorder.none,
           suffixIcon: suffixIcon,
+        ),
+      ),
+    );
+  }
+}
+class GoogleButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const GoogleButton({
+    super.key,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black87,
+          elevation: 1,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: const BorderSide(color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/icon/google.png',
+              height: 44,
+              width: 44,
+            ),
+            const SizedBox(width: 12),
+            const Text(
+              'Continue with Google',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
         ),
       ),
     );

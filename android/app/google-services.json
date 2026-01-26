@@ -1,18 +1,32 @@
 {
   "project_info": {
     "project_number": "470378363502",
+    "firebase_url": "https://motorsporteasy-default-rtdb.firebaseio.com",
     "project_id": "motorsporteasy",
     "storage_bucket": "motorsporteasy.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:470378363502:android:41310dc98b51b81ba3447f",
+        "mobilesdk_app_id": "1:470378363502:android:80c6de59c813182ca3447f",
         "android_client_info": {
-          "package_name": "com.motorsporteasy.motor_sport_easy"
+          "package_name": "com.motorsporteasy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "470378363502-h0gq7cf913a6oa1jm2g3rcgpmr8jede5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.motorsporteasy",
+            "certificate_hash": "b530523910f9a8f1915d5220387f4e396460d884"
+          }
+        },
+        {
+          "client_id": "470378363502-vbpiu024cps4un92k6bk9sho59o8v0rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBuZ6w1fYHpVFqV7oLiNoC44DXdFRr6EBA"
@@ -20,7 +34,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470378363502-vbpiu024cps4un92k6bk9sho59o8v0rd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "470378363502-6vkr781ri5n32sra6n04dirur09l95nk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.motorsporteasy.motorSportEasy"
+              }
+            }
+          ]
         }
       }
     }
