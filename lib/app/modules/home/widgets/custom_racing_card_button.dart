@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 // class CustomRacingCardButton extends StatelessWidget {
@@ -203,7 +205,7 @@ class CustomRacingCardButton extends StatelessWidget {
                     // 1% of screen width
                     children: [
                       // Logo section
-                      SizedBox(
+                      /*SizedBox(
                         width: logoSize,
                         height: logoSize,
                         child: Image.network(
@@ -211,6 +213,22 @@ class CustomRacingCardButton extends StatelessWidget {
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Icon(Icons.broken_image);
+                          },
+                        ),
+                      ), */
+                      SizedBox(
+                        width: logoSize,
+                        height: logoSize,
+                        child: sponsorLogo.startsWith('data:image')
+                            ? Image.memory(
+                          base64Decode(sponsorLogo.split(',').last),
+                          fit: BoxFit.contain,
+                        )
+                            : Image.network(
+                          sponsorLogo,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(Icons.broken_image);
                           },
                         ),
                       ),

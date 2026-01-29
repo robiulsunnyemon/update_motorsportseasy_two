@@ -6,7 +6,6 @@ import 'app/routes/app_pages.dart';
 import 'app/shared_pref_helper/shared_pref_helper.dart';
 import 'firebase_options.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -15,15 +14,13 @@ Future<void> main() async {
   await Hive.openBox('settingsBox');
   await Hive.openBox('notificationBox');
 
-
   await Hive.openBox<String>('profileImageBox');
-
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-
   final String? token = await SharedPrefHelper.getToken();
-  final bool? termsAndRegulationStatus = await SharedPrefHelper.getIsTermsAccepted();
+  final bool? termsAndRegulationStatus =
+      await SharedPrefHelper.getIsTermsAccepted();
   final subscriptionState = await SharedPrefHelper.getSubscriptionState();
 
   print('Token: $token, Terms Accepted: $termsAndRegulationStatus');
@@ -38,20 +35,14 @@ Future<void> main() async {
     // Terms accepted but not logged in
     initialRoute = Routes.LOGIN;
   } else {
-    // Terms accepted and logged in
-    // if(subscriptionState==true) {
-    //   initialRoute = Routes.BOTTOM_NAVIGATION_BAR;
-    // }
-    // else{
-    //   initialRoute = Routes.SUBSCRIPTION;
-    // }
-    initialRoute = Routes.BOTTOM_NAVIGATION_BAR;
+    //Terms accepted and logged in
+    if (subscriptionState == true) {
+      initialRoute = Routes.BOTTOM_NAVIGATION_BAR;
+    } else {
+      initialRoute = Routes.SUBSCRIPTION;
+    }
+    // initialRoute = Routes.BOTTOM_NAVIGATION_BAR;
   }
 
-
-
-  runApp(
-    MotorSportEasyApp(initialRoute: initialRoute),
-  );
-
+  runApp(MotorSportEasyApp(initialRoute: initialRoute));
 }

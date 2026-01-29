@@ -38,6 +38,7 @@ You can also choose "Skip" to continue without enabling notifications.
                     fontSize: 14,
                     height: 1.5,
                     fontFamily: "PlayfairDisplay",
+                    color: Colors.white
                   ),
                 ),
               ),

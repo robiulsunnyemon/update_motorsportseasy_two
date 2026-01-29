@@ -12,7 +12,7 @@ class SubscriptionView extends GetView<SubscriptionController> {
       appBar: AppBar(
         title: Text('Subscribe', style: TextStyle(color: AppColor.white,fontSize: 28,fontWeight: FontWeight.bold)),
         elevation: 0,
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColor.blackColor,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
@@ -64,8 +64,10 @@ class SubscriptionView extends GetView<SubscriptionController> {
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(color: AppColor.primaryColor),
-                child: Column(
+                decoration: BoxDecoration(color: AppColor.blackColor),
+                child: Image.asset("assets/images/logo_image.jpg")
+                
+                /*Column(
                   children: [
                     // Icon(Icons.star, color: Colors.amber, size: 60),
                     SizedBox(height: 16),
@@ -85,7 +87,7 @@ class SubscriptionView extends GetView<SubscriptionController> {
                       textAlign: TextAlign.center,
                     ),
                   ],
-                ),
+                ),*/
               ),
 
               // Price Section

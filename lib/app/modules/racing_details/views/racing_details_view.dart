@@ -25,32 +25,32 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Icon(Icons.arrow_back, color: AppColor.white),
-                  ),
-                  SizedBox(width: 8),
-                  SizedBox(
-                    width: screenWidth * 300 / 360,
-                    child: Text(
-                      controller.raceName,
-                      style: TextStyle(
-                        color: AppColor.white,
-                        fontSize: 24,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
+              child: GestureDetector(
+                onTap: () {
+                  // Get.back();
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Icon(Icons.arrow_back, color: AppColor.white),
+                    // SizedBox(width: 8),
+                    SizedBox(
+                      width: screenWidth * 300 / 360,
+                      child: Text(
+                        controller.raceName,
+                        style: TextStyle(
+                          color: AppColor.white,
+                          fontSize: 24,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 2,
                       ),
-                      maxLines: 2,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -219,7 +219,7 @@ class RacingDetailsView extends GetView<RacingDetailsController> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 50.0),
-                    child: Text("No events available"),
+                    child: Text("No events available",style: TextStyle(color: AppColor.greyColor),),
                   ),
                 ),
               );

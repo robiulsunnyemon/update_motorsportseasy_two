@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -129,7 +131,7 @@ class CustomEventCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10,),
-                SizedBox(
+                /*SizedBox(
                   width: logoSize,
                   height: logoSize,
                   child: Image.network(
@@ -139,7 +141,32 @@ class CustomEventCard extends StatelessWidget {
                       return Icon(Icons.broken_image);
                     },
                   ),
-                ),
+                ),*/
+                SizedBox(
+                  width: logoSize,
+                  height: logoSize,
+                  child: sponsorLogo.startsWith('data:image')
+                      ? Image.memory(
+                    base64Decode(sponsorLogo.split(',').last),
+                    fit: BoxFit.contain, // Logos এর জন্য cover এর চাইতে contain ভাল
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.broken_image);
+                    },
+                  )
+                      : Image.network(
+                    sponsorLogo,
+                    fit: BoxFit.contain,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.broken_image);
+                    },
+                  ),
+                )
               ],
             ),
           ],

@@ -25,90 +25,96 @@ class ProfileView extends GetView<ProfileController> {
         foregroundColor: Colors.white,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Profile Header Section
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _buildProfileHeader(),
-            ),
-            SizedBox(height: 16),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // Profile Header Section
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: _buildProfileHeader(),
+              ),
+              SizedBox(height: 16),
 
-            SizedBox(height: 8,),
-            _buildListTile(
-              title: 'Setting & Privacy',
-              icon: Icons.settings,
-              onTap: () {
-                Get.toNamed(Routes.PRIVACY);
-              },
-            ),
-
-
-            // Obx((){
-            //   return _buildListTile(
-            //     title: controller.isActiveNotification.value?'Stop Send Notification':"Start Send Notification",
-            //     icon: controller.isActiveNotification.value?Icons.notifications_off:Icons.notifications,
-            //     onTap: () async {
-            //       final isTermsAccepted =await SharedPrefHelper.getIsTermsAccepted();
-            //       if(isTermsAccepted==true){
-            //         controller.disableNotifications();
-            //       }else{
-            //         controller.notificationActive();
-            //       }
-            //     },
-            //   );
-            // }),
+              SizedBox(height: 8,),
+              _buildListTile(
+                title: 'Setting & Privacy',
+                icon: Icons.settings,
+                onTap: () {
+                  Get.toNamed(Routes.PRIVACY);
+                },
+              ),
 
 
-
-            _buildListTile(
-              title: 'Request a Race',
-              icon: Icons.flag,
-              onTap: () {
-                Get.toNamed(Routes.REQUEST_FORM);
-              },
-            ),
-            _buildListTile(
-              title: 'Submission Report',
-              icon: Icons.assignment,
-              onTap: () {
-                Get.toNamed(Routes.REPORT_FORM);
-              },
-            ),
-
-            _buildListTile(
-              title: 'Delete my account',
-              icon: Icons.delete,
-              onTap: () {
-                _showDeleteAccountDialog(context);
-              },
-            ),
+              // Obx((){
+              //   return _buildListTile(
+              //     title: controller.isActiveNotification.value?'Stop Send Notification':"Start Send Notification",
+              //     icon: controller.isActiveNotification.value?Icons.notifications_off:Icons.notifications,
+              //     onTap: () async {
+              //       final isTermsAccepted =await SharedPrefHelper.getIsTermsAccepted();
+              //       if(isTermsAccepted==true){
+              //         controller.disableNotifications();
+              //       }else{
+              //         controller.notificationActive();
+              //       }
+              //     },
+              //   );
+              // }),
 
 
-            _buildListTile(
-              title: 'Logout',
-              icon: Icons.logout,
-              onTap: () {
-                _showLogoutConfirmationDialog(context);
-              },
-            ),
+
+              _buildListTile(
+                title: 'Request a Race',
+                icon: Icons.flag,
+                onTap: () {
+                  Get.toNamed(Routes.REQUEST_FORM);
+                },
+              ),
+              _buildListTile(
+                title: 'Submission Report',
+                icon: Icons.assignment,
+                onTap: () {
+                  Get.toNamed(Routes.REPORT_FORM);
+                },
+              ),
+            ],
+          ),
+
+          Column(
+            children: [
+
+              _buildListTile(
+                title: 'Logout',
+                icon: Icons.logout,
+                onTap: () {
+                  _showLogoutConfirmationDialog(context);
+                },
+              ),
+
+              _buildListTile(
+                title: 'Delete my account',
+                icon: Icons.delete,
+                onTap: () {
+                  _showDeleteAccountDialog(context);
+                },
+              ),
+
+              SizedBox(height: 50,)
+            ],
+          ),
 
 
-            SizedBox(height: 100,),
+          /*_buildListTile(
+            title: 'Cancel Subscription',
+            icon: Icons.cancel,
+            onTap: () {
+              _showCancelSubscriptionDialog(context);
+            },
+          ),*/
 
 
-            _buildListTile(
-              title: 'Cancel Subscription',
-              icon: Icons.cancel,
-              onTap: () {
-                _showCancelSubscriptionDialog(context);
-              },
-            ),
-
-
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -121,7 +127,7 @@ class ProfileView extends GetView<ProfileController> {
     required VoidCallback onTap,
   }) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
       color: Colors.white,
       child: ListTile(
         leading: Icon(
