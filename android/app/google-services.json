@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "470378363502-h0gq7cf913a6oa1jm2g3rcgpmr8jede5.apps.googleusercontent.com",
+          "client_id": "470378363502-47o1ihdg0c1qqbaqaplvasf324jundn1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.motorsporteasy",
-            "certificate_hash": "b530523910f9a8f1915d5220387f4e396460d884"
+            "certificate_hash": "76fefedc42b8da47cfcdf26f7454eb9227f94843"
           }
         },
         {
