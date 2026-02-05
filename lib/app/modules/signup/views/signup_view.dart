@@ -24,7 +24,7 @@ class SignupView extends GetView<SignupController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset("assets/images/logo_image.jpg"),
-                  SizedBox(height: 70),
+                  SizedBox(height: 10),
                   Text(
                     "Create Account ✨",
                     style: TextStyle(
