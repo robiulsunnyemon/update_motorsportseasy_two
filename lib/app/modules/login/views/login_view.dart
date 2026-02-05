@@ -213,13 +213,11 @@ class LoginView extends GetView<LoginController> {
     );
   }
 }
+
 class GoogleButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const GoogleButton({
-    super.key,
-    required this.onPressed,
-  });
+  const GoogleButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -240,18 +238,11 @@ class GoogleButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/icon/google.png',
-              height: 44,
-              width: 44,
-            ),
+            Image.asset('assets/icon/google.png', height: 44, width: 44),
             const SizedBox(width: 12),
             const Text(
               'Continue with Google',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
           ],
         ),
