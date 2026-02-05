@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "470378363502",
+    "firebase_url": "https://motorsporteasy-default-rtdb.firebaseio.com",
     "project_id": "motorsporteasy",
     "storage_bucket": "motorsporteasy.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:470378363502:android:41310dc98b51b81ba3447f",
+        "mobilesdk_app_id": "1:470378363502:android:80c6de59c813182ca3447f",
         "android_client_info": {
-          "package_name": "com.motorsporteasy.motor_sport_easy"
+          "package_name": "com.motorsporteasy"
         }
       },
       "oauth_client": [],
