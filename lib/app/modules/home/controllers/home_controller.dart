@@ -11,6 +11,7 @@ import '../../../routes/app_pages.dart';
 import '../../../shared_pref_helper/shared_pref_helper.dart';
 import '../../widgets/custom_elevated_button.dart';
 import 'package:http/http.dart' as http;
+import '../../../utils/custom_snackbar.dart';
 
 class HomeController extends GetxController {
   final TextEditingController requestRaceNameController =
@@ -18,7 +19,7 @@ class HomeController extends GetxController {
   final TextEditingController reportMessageController = TextEditingController();
 
   Future<void> showRequestDialog(BuildContext context) async {
-    final isTermsAccepted =await SharedPrefHelper.getIsTermsAccepted();
+    final isTermsAccepted = await SharedPrefHelper.getIsTermsAccepted();
     if (context.mounted) {
       return showDialog<void>(
         context: context,
@@ -204,6 +205,7 @@ class HomeController extends GetxController {
     fetchAllRaces();
     super.onInit();
   }
+
   void setSponsorLogo(String logo) {
     selectedSponsorLogo.value = logo;
   }
@@ -217,13 +219,7 @@ class HomeController extends GetxController {
       allRacesList.value = racesList;
     } catch (e) {
       errorMessage.value = 'Failed to load races: $e';
-      Get.snackbar(
-        'Error',
-        'Failed to load races',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      CustomSnackbar.show('Error', 'Failed to load races');
     } finally {
       isLoading.value = false;
     }
@@ -231,56 +227,62 @@ class HomeController extends GetxController {
 
   Future<void> submitRaceRequest(String raceName) async {
     try {
-      String? email =await SharedPrefHelper.getEmail();
+      String? email = await SharedPrefHelper.getEmail();
       if (email != null) {
-
         final response = await http.post(
           Uri.parse("$baseUrl/request/"),
           headers: {"Content-Type": "application/json"},
           body: jsonEncode({
             "user_email": email.trim(),
-            "request_details": raceName
+            "request_details": raceName,
           }),
         );
 
-        if(response.statusCode==201){
-          Get.snackbar('Success', 'Race request submitted successfully!');
+        if (response.statusCode == 201) {
+          CustomSnackbar.show(
+            'Success',
+            'Race request submitted successfully!',
+          );
           await fetchAllRaces();
-        }else{
-          Get.snackbar('Error', 'Failed to submit request: ${response.body}');
+        } else {
+          CustomSnackbar.show(
+            'Error',
+            'Failed to submit request: ${response.body}',
+          );
           await fetchAllRaces();
         }
-
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to submit request: ${e.toString()}');
+      CustomSnackbar.show('Error', 'Failed to submit request: ${e.toString()}');
     }
   }
 
   Future<void> submitReport(String reportName) async {
     try {
-      String? email =await SharedPrefHelper.getEmail();
+      String? email = await SharedPrefHelper.getEmail();
       if (email != null) {
-
         final response = await http.post(
           Uri.parse("$baseUrl/report/"),
           headers: {"Content-Type": "application/json"},
           body: jsonEncode({
             "user_email": email.trim(),
-            "report_details": reportName
+            "report_details": reportName,
           }),
         );
 
-        if(response.statusCode==201){
-          Get.snackbar('Success', 'Your report submitted successfully!');
+        if (response.statusCode == 201) {
+          CustomSnackbar.show('Success', 'Your report submitted successfully!');
           await fetchAllRaces();
-        }else{
-          Get.snackbar('Error', 'Failed to submit report: ${response.body}');
+        } else {
+          CustomSnackbar.show(
+            'Error',
+            'Failed to submit report: ${response.body}',
+          );
           await fetchAllRaces();
         }
       }
     } catch (e) {
-      Get.snackbar('Error', 'Failed to submit report: ${e.toString()}');
+      CustomSnackbar.show('Error', 'Failed to submit report: ${e.toString()}');
     }
   }
 
@@ -352,35 +354,33 @@ class HomeController extends GetxController {
             },
           );
 
-
-
       if (response.statusCode == 200) {
-        Get.snackbar("Success", "Your account has been deleted");
+        CustomSnackbar.show("Success", "Your account has been deleted");
         SharedPrefHelper.clearToken();
         SharedPrefHelper.clearEmail();
         Get.offAllNamed(Routes.LOGIN);
       } else if (response.statusCode == 404) {
-        Get.snackbar("Error", "Your Email is not registered");
+        CustomSnackbar.show("Error", "Your Email is not registered");
       } else {
-        Get.snackbar("Error", "Something went wrong, Please try again");
+        CustomSnackbar.show("Error", "Something went wrong, Please try again");
       }
     } on SocketException {
-      Get.snackbar(
+      CustomSnackbar.show(
         "Network Error",
         "No internet connection. Please check your network.",
       );
     } on TimeoutException catch (e) {
-      Get.snackbar(
+      CustomSnackbar.show(
         "Timeout",
         e.message ?? "The request took too long to complete.",
       );
     } on FormatException {
-      Get.snackbar(
+      CustomSnackbar.show(
         "Response Error",
         "Invalid response format from the server.",
       );
     } catch (e) {
-      Get.snackbar(
+      CustomSnackbar.show(
         "Unexpected Error",
         "Something went wrong. Please try again.",
       );
@@ -396,20 +396,15 @@ class HomeController extends GetxController {
             sound: false,
           );
 
-      Get.snackbar(
+      CustomSnackbar.show(
         "Notifications Disabled",
         "You will no longer receive push notifications.",
-        snackPosition: SnackPosition.BOTTOM,
       );
 
       postCredential(fcmToken: "null");
       await SharedPrefHelper.saveIsTermsAccepted(false);
     } catch (e) {
-      Get.snackbar(
-        "Error",
-        "Could not disable notifications: $e",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      CustomSnackbar.show("Error", "Could not disable notifications: $e");
     }
   }
 
@@ -433,18 +428,17 @@ class HomeController extends GetxController {
         await SharedPrefHelper.saveIsTermsAccepted(true);
       }
     } catch (e) {
-      Get.snackbar("Error", "Error getting FCM token: $e");
+      CustomSnackbar.show("Error", "Error getting FCM token: $e");
       throw Exception("Error getting FCM token: $e");
     }
   }
 
   Future<void> postCredential({required String fcmToken}) async {
     try {
-      final email =await SharedPrefHelper.getEmail();
+      final email = await SharedPrefHelper.getEmail();
       if (email == null) {
         return;
       }
-
 
       final response = await http
           .post(
@@ -464,32 +458,34 @@ class HomeController extends GetxController {
         await SharedPrefHelper.saveToken(decodedResponse["access_token"]);
         await fetchAllRaces();
       } else if (response.statusCode == 404) {
-        Get.snackbar("Email Error", "Your Email is Wrong");
+        CustomSnackbar.show("Email Error", "Your Email is Wrong");
       } else if (response.statusCode == 400) {
-        Get.snackbar("Password Error", "Your Password is Wrong");
+        CustomSnackbar.show("Password Error", "Your Password is Wrong");
       } else if (response.statusCode == 401) {
-        Get.snackbar("Authorization Error", "Your otp code is not varified");
+        CustomSnackbar.show(
+          "Authorization Error",
+          "Your otp code is not varified",
+        );
       } else {
-        Get.snackbar("Error", "Something went wrong");
+        CustomSnackbar.show("Error", "Something went wrong");
       }
     } on SocketException {
-      Get.snackbar(
+      CustomSnackbar.show(
         "Network Error",
         "No internet connection. Please check your network.",
       );
     } on TimeoutException catch (e) {
-      Get.snackbar(
+      CustomSnackbar.show(
         "Timeout",
         e.message ?? "The request took too long to complete.",
       );
     } on FormatException {
-      Get.snackbar(
+      CustomSnackbar.show(
         "Response Error",
         "Invalid response format from the server.",
       );
     } catch (e) {
-
-      Get.snackbar(
+      CustomSnackbar.show(
         "Unexpected Error",
         "Something went wrong. Please try again.",
       );

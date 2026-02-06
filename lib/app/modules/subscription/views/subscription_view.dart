@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:motor_sport_easy/app/data/constants/app_color.dart';
 import '../controllers/subscription_controller.dart';
+import '../../../utils/custom_snackbar.dart';
 
 class SubscriptionView extends GetView<SubscriptionController> {
   const SubscriptionView({super.key});
@@ -10,7 +11,14 @@ class SubscriptionView extends GetView<SubscriptionController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Subscribe', style: TextStyle(color: AppColor.white,fontSize: 28,fontWeight: FontWeight.bold)),
+        title: Text(
+          'Subscribe',
+          style: TextStyle(
+            color: AppColor.white,
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         elevation: 0,
         backgroundColor: AppColor.blackColor,
       ),
@@ -24,7 +32,11 @@ class SubscriptionView extends GetView<SubscriptionController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error_outline, color:AppColor.primaryColor, size: 64),
+                Icon(
+                  Icons.error_outline,
+                  color: AppColor.primaryColor,
+                  size: 64,
+                ),
                 SizedBox(height: 16),
                 Text(
                   controller.errorMessage.value,
@@ -46,7 +58,11 @@ class SubscriptionView extends GetView<SubscriptionController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.store_mall_directory, color: Colors.orange, size: 64),
+                Icon(
+                  Icons.store_mall_directory,
+                  color: Colors.orange,
+                  size: 64,
+                ),
                 SizedBox(height: 16),
                 Text(
                   'Store unavailable',
@@ -65,8 +81,8 @@ class SubscriptionView extends GetView<SubscriptionController> {
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(color: AppColor.blackColor),
-                child: Image.asset("assets/images/logo_image.jpg")
-                
+                child: Image.asset("assets/images/logo_image.jpg"),
+
                 /*Column(
                   children: [
                     // Icon(Icons.star, color: Colors.amber, size: 60),
@@ -137,7 +153,7 @@ class SubscriptionView extends GetView<SubscriptionController> {
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey
+                            color: Colors.grey,
                           ),
                         ),
                       ],
@@ -170,7 +186,8 @@ class SubscriptionView extends GetView<SubscriptionController> {
                     _buildFeatureItem(
                       icon: Icons.workspace_premium,
                       title: 'The ultimate race calendar',
-                      description: 'Never miss a race with our comprehensive calendar',
+                      description:
+                          'Never miss a race with our comprehensive calendar',
                     ),
                     _buildFeatureItem(
                       icon: Icons.speed,
@@ -180,7 +197,8 @@ class SubscriptionView extends GetView<SubscriptionController> {
                     _buildFeatureItem(
                       icon: Icons.security,
                       title: 'Only the notifications you want.',
-                      description: 'Customize alerts for your favorite races and events',
+                      description:
+                          'Customize alerts for your favorite races and events',
                     ),
                   ],
                 ),
@@ -193,11 +211,10 @@ class SubscriptionView extends GetView<SubscriptionController> {
                     if (controller.firstProduct != null) {
                       controller.purchaseProduct(controller.firstProduct!);
                     } else {
-                      Get.snackbar(
+                      CustomSnackbar.show(
                         'Warning',
                         'Product not available',
                         backgroundColor: AppColor.primaryColor,
-                        colorText:AppColor.white,
                       );
                     }
                   },
@@ -232,8 +249,8 @@ class SubscriptionView extends GetView<SubscriptionController> {
                 padding: EdgeInsets.all(16),
                 child: Text(
                   'By subscribing, you agree to our Terms of Service and Privacy Policy. '
-                      'Payment will be charged to your account upon confirmation. '
-                      'Subscription automatically renews unless canceled at least 24 hours before the end of the current period.',
+                  'Payment will be charged to your account upon confirmation. '
+                  'Subscription automatically renews unless canceled at least 24 hours before the end of the current period.',
                   style: TextStyle(color: Colors.grey, fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
@@ -245,7 +262,11 @@ class SubscriptionView extends GetView<SubscriptionController> {
     );
   }
 
-  Widget _buildFeatureItem({required IconData icon, required String title, required String description}) {
+  Widget _buildFeatureItem({
+    required IconData icon,
+    required String title,
+    required String description,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12),
       child: Row(

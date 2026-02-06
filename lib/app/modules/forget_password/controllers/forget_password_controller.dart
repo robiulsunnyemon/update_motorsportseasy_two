@@ -7,49 +7,69 @@ import 'package:http/http.dart' as http;
 import 'package:motor_sport_easy/app/routes/app_pages.dart';
 
 import '../../../api_services/base_url.dart';
-class ForgetPasswordController extends GetxController {
+import '../../../utils/custom_snackbar.dart';
 
+class ForgetPasswordController extends GetxController {
   final emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final isLoading=false.obs;
+  final isLoading = false.obs;
 
   Future<void> resendOtp() async {
-    try{
-      isLoading.value=true;
+    try {
+      isLoading.value = true;
       update();
-      final response= await http.post(
-          Uri.parse("$baseUrl/auth/user/resend-otp"),
-          headers: {"Content-Type": "application/json"},
-          body: jsonEncode({
-            "email":emailController.text.trim(),
-          })
-      ).timeout(
-        const Duration(seconds: 30),
-        onTimeout: () {
-          throw TimeoutException("Connection timed out. Please try again.");
-        },
-      );
-      isLoading.value=false;
+      final response = await http
+          .post(
+            Uri.parse("$baseUrl/auth/user/resend-otp"),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode({"email": emailController.text.trim()}),
+          )
+          .timeout(
+            const Duration(seconds: 30),
+            onTimeout: () {
+              throw TimeoutException("Connection timed out. Please try again.");
+            },
+          );
+      isLoading.value = false;
 
       update();
-      if(response.statusCode==200){
-        Get.snackbar("Success", "You Successfully resend your otp. Please check your Email");
-        Get.offAllNamed(Routes.OTP_VERIFICATION,arguments: {"email":emailController.text.trim(),"isResetPassword":true});
-      }else if(response.statusCode==404){
-        Get.snackbar("Error", "Your Email is not registered");
+      if (response.statusCode == 200) {
+        CustomSnackbar.show(
+          "Success",
+          "You Successfully resend your otp. Please check your Email",
+        );
+        Get.offAllNamed(
+          Routes.OTP_VERIFICATION,
+          arguments: {
+            "email": emailController.text.trim(),
+            "isResetPassword": true,
+          },
+        );
+      } else if (response.statusCode == 404) {
+        CustomSnackbar.show("Error", "Your Email is not registered");
+      } else {
+        CustomSnackbar.show("Error", "Something went wrong, Please try again");
       }
-      else{
-        Get.snackbar("Error", "Something went wrong, Please try again");
-      }
-    }on SocketException {
-      Get.snackbar("Network Error", "No internet connection. Please check your network.");
+    } on SocketException {
+      CustomSnackbar.show(
+        "Network Error",
+        "No internet connection. Please check your network.",
+      );
     } on TimeoutException catch (e) {
-      Get.snackbar("Timeout", e.message ?? "The request took too long to complete.");
+      CustomSnackbar.show(
+        "Timeout",
+        e.message ?? "The request took too long to complete.",
+      );
     } on FormatException {
-      Get.snackbar("Response Error", "Invalid response format from the server.");
+      CustomSnackbar.show(
+        "Response Error",
+        "Invalid response format from the server.",
+      );
     } catch (e) {
-      Get.snackbar("Unexpected Error", "Something went wrong. Please try again.");
+      CustomSnackbar.show(
+        "Unexpected Error",
+        "Something went wrong. Please try again.",
+      );
     }
   }
-
 }

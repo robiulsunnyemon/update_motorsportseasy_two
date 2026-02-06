@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../../../routes/app_pages.dart';
 import '../../../shared_pref_helper/shared_pref_helper.dart';
+import '../../../utils/custom_snackbar.dart';
 
 class SubscriptionController extends GetxController {
   final InAppPurchase _iap = InAppPurchase.instance;
@@ -26,8 +27,7 @@ class SubscriptionController extends GetxController {
       _handlePurchaseUpdates,
       onDone: () {},
       onError: (error) {
-        Get.snackbar('IAP Stream Error', '$error',
-            backgroundColor: Colors.red, colorText: Colors.white);
+        CustomSnackbar.show('IAP Stream Error', '$error');
       },
     );
     initializeIAP();
@@ -70,23 +70,17 @@ class SubscriptionController extends GetxController {
       final purchaseParam = PurchaseParam(productDetails: product);
       _iap.buyNonConsumable(purchaseParam: purchaseParam);
     } catch (e) {
-      Get.snackbar(
-        'Purchase Error',
-        'Failed to initiate purchase: $e',
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      CustomSnackbar.show('Purchase Error', 'Failed to initiate purchase: $e');
     }
   }
 
   Future<void> _handlePurchaseUpdates(List<PurchaseDetails> purchases) async {
     for (final purchase in purchases) {
       if (purchase.status == PurchaseStatus.pending) {
-        Get.snackbar(
+        CustomSnackbar.show(
           'Purchase Pending',
           'Your purchase is pending...',
           backgroundColor: Colors.orange,
-          colorText: Colors.white,
         );
       } else if (purchase.status == PurchaseStatus.purchased ||
           purchase.status == PurchaseStatus.restored) {
@@ -98,11 +92,9 @@ class SubscriptionController extends GetxController {
         // await _verifyPurchaseBackend(purchase);
         // -------------------------
       } else if (purchase.status == PurchaseStatus.error) {
-        Get.snackbar(
+        CustomSnackbar.show(
           'Purchase Failed',
           'An error occurred during purchase',
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
         );
       }
 
@@ -119,19 +111,12 @@ class SubscriptionController extends GetxController {
 
     if (token.isNotEmpty) {
       isPremium.value = true; // temporarily unlock premium
-      Get.snackbar(
-        'Success',
-        'Premium features temporarily unlocked!',
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
+      CustomSnackbar.show('Success', 'Premium features temporarily unlocked!');
       _navigateToPremiumPage();
     } else {
-      Get.snackbar(
+      CustomSnackbar.show(
         'Verification Failed',
         'Could not verify purchase token locally',
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
       );
     }
   }
@@ -181,7 +166,8 @@ class SubscriptionController extends GetxController {
     Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
   }
 
-  ProductDetails? get firstProduct => products.isNotEmpty ? products.first : null;
+  ProductDetails? get firstProduct =>
+      products.isNotEmpty ? products.first : null;
 
   String get formattedPrice {
     if (products.isEmpty) return '£3';

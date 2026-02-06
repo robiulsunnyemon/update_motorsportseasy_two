@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:motor_sport_easy/app/api_services/base_url.dart';
 import 'package:motor_sport_easy/app/shared_pref_helper/shared_pref_helper.dart';
 import '../../../routes/app_pages.dart';
+import '../../../utils/custom_snackbar.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController();
@@ -190,13 +191,6 @@ class LoginController extends GetxController {
   }
 
   void _showSnackbar(String title, String message) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.snackbar(
-        title,
-        message,
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 3),
-      );
-    });
+    CustomSnackbar.show(title, message);
   }
 }
