@@ -35,6 +35,9 @@ migrate_working_dir/
 android/build/
 android/app/build/
 android/.gradle/
+key.properties
+**/*.keystore
+**/*.jks
 
 
 # Symbolication related
